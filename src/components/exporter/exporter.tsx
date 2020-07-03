@@ -1,7 +1,20 @@
 import React from 'react';
+import './exporter.scss';
+import { fetchAllPlaylists } from '../../api/playlists';
 
 export class Exporter extends React.Component<{}, {}> {
+
+  componentDidMount() {
+    fetchAllPlaylists()
+      .then(playlists => console.log(playlists))
+      .catch(error => console.log(error));
+  }
+
   render() {
-    return <h1>Exporter</h1>;
+    return <div className="exporter-content">
+    <header>
+      <h1>Export playlists</h1>
+    </header>
+  </div>;
   }
 }
