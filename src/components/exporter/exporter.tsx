@@ -1,6 +1,6 @@
 import React from 'react';
 import './exporter.scss';
-import { fetchAllPlaylists } from '../../api/playlists';
+import { fetchPlaylists, fetchAllPlaylists } from '../../api/playlists';
 
 export class Exporter extends React.Component<{}, {}> {
 
