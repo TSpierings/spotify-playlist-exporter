@@ -9,4 +9,17 @@
       padding: 20px;
     }
   }
+
+  .playlists {
+    display: flex;
+    flex-wrap: wrap;
+
+    .playlist-card {
+      background-color: black;
+      color: white;
+      margin: 5px;
+      min-height: 50px;
+      padding: 10px;
+    }
+  }
 }
