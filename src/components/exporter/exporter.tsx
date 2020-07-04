@@ -21,7 +21,16 @@ export class Exporter extends React.Component<{}, {}> {
       <h1>Export playlists</h1>
     </header>
     <section className="playlists">
-      {this.playlists.map(playlist => <div className="playlist-card" key={playlist.id}>{playlist.name}</div>)}
+      {this.playlists.map(playlist => 
+        <div className="playlist-card-container" key={playlist.id}>
+          <div className="playlist-card" style={
+          {
+            backgroundImage: `url(${playlist.images[0].url})`
+          }}>
+            <span>{playlist.name}</span>
+          </div>
+        </div>
+      )}
     </section>
   </div>;
   }
