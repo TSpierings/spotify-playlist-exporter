@@ -10,6 +10,30 @@
     }
   }
 
+  .exporter-bar {
+    padding: 0 20px;
+
+    p {
+      margin: 0 0 5px 0;
+      padding: 0;
+    }
+
+    .bar-border {
+      width: 100%;
+      height: 20px;
+      border: 1px solid black;
+
+      .bar {
+        background-color: black;
+        height: 100%;
+        transition: width 500ms;
+        color: white;
+        font-size: 90%;
+        text-indent: 4px;
+      }
+    }
+  }
+
   .playlists {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

@@ -67,27 +67,3 @@ export function fetchPlaylistItems(playlistId: string, offset: number = 0): Prom
 
   return fetch(request);
 }
-
-/**
- * Repeatedly call the playlist item API to get all items of the given playlist.
- */
-export async function fetchAllPlaylistItems(playlistId: string): Promise<Array<any>> {
-  try {
-    const items: Array<any> = [];
-    let response = await fetchPlaylistItems(playlistId);    
-    let data = (await response.json() as Wrapper);
-    items.push(...data.items);
-
-    while (!isNullOrUndefined(data.next)) {
-      // await new Promise(resolve => setTimeout(resolve, 1000));
-      response = await fetchPlaylistItems(playlistId, data.offset + 100);
-      data = (await response.json() as Wrapper);
-      items.push(...data.items);
-    }
-
-    return Promise.resolve(items);
-  }
-  catch (error) {
-    return await Promise.reject(error);
-  }
-}
