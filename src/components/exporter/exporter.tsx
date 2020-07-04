@@ -33,20 +33,31 @@ export class Exporter extends React.Component<{}, ExporterState> {
       .catch(error => console.log(error));    
   }
 
-  export(playlistId: string) {
+  export(playlistId: string, playlistName: string) {
     // fetchAllPlaylistItems(playlistId)
     //   .then(response => console.log(response))
     //   .catch(error => console.log(error))
 
-    this.fetchAllPlaylistItems(playlistId)
-      .then(response => console.log(response))
+    this.fetchAllPlaylistItems(playlistId, playlistName)
+      .then(async response => {
+        const data = JSON.stringify(response);
+        const file = new Blob([data], {type: 'text/json'});
+        if (window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveOrOpenBlob(file, `${playlistName}.txt`);
+        } else {
+          const link = document.getElementById('a')! as any;
+          link.href = URL.createObjectURL(file);
+          link.download = `${playlistName}.txt`;
+          link.innerText = playlistName;
+        }
+      })
       .catch(error => console.log(error))
   }
 
   /**
    * Repeatedly call the playlist item API to get all items of the given playlist.
    */
-  async fetchAllPlaylistItems(playlistId: string): Promise<Array<any>> {
+  async fetchAllPlaylistItems(playlistId: string, playlistName: string): Promise<Array<any>> {
     try {
       const items: Array<any> = [];
       let response = await fetchPlaylistItems(playlistId);    
@@ -54,7 +65,7 @@ export class Exporter extends React.Component<{}, ExporterState> {
       items.push(...data.items);
 
       this.setState({
-        currentlyExporting: playlistId,
+        currentlyExporting: playlistName,
         progress: items.length,
         total: data.total
       });
@@ -91,7 +102,7 @@ export class Exporter extends React.Component<{}, ExporterState> {
       <h1>Export playlists</h1>
     </header>
     <section className="exporter-bar">
-      <p>Currently exporting: {this.state.currentlyExporting ? this.state.currentlyExporting : 'Nothing'}</p>
+      <p>Currently exporting: {this.state.currentlyExporting ? this.state.currentlyExporting : <a id="a">Nothing</a>}</p>
       <div className="bar-border">
         <div className="bar" style={{width: `${this.calculateBarWidth()}%`}}>
           {this.state.progress} of {this.state.total}
@@ -105,7 +116,7 @@ export class Exporter extends React.Component<{}, ExporterState> {
           {
             backgroundImage: `url(${playlist.images[0].url})`
           }}
-          onClick={() => this.export(playlist.id)}>
+          onClick={() => this.export(playlist.id, playlist.name)}>
             <span>{playlist.name}</span>
           </div>
         </div>
