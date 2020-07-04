@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchAllPlaylists } from '../../api/playlists';
+import { fetchAllPlaylists, fetchPlaylistItems, fetchAllPlaylistItems } from '../../api/playlists';
 import { SimplifiedPlaylist } from '../../interfaces/spotify/playlists';
 import './exporter.scss';
 
@@ -15,6 +15,12 @@ export class Exporter extends React.Component<{}, {}> {
       .catch(error => console.log(error));    
   }
 
+  export(playlistId: string) {
+    fetchAllPlaylistItems(playlistId)
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+  }
+
   render() {
     return <div className="exporter-content">
     <header>
@@ -26,7 +32,8 @@ export class Exporter extends React.Component<{}, {}> {
           <div className="playlist-card" style={
           {
             backgroundImage: `url(${playlist.images[0].url})`
-          }}>
+          }}
+          onClick={() => this.export(playlist.id)}>
             <span>{playlist.name}</span>
           </div>
         </div>
