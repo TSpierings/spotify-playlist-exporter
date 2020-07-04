@@ -13,8 +13,8 @@
   .exporter-bar {
     padding: 0 20px;
 
-    p {
-      margin: 0 0 5px 0;
+    p, a {
+      margin: 0;
       padding: 0;
     }
 
@@ -22,6 +22,7 @@
       width: 100%;
       height: 20px;
       border: 1px solid black;
+      margin-top: 5px;
 
       .bar {
         background-color: black;
@@ -50,10 +51,10 @@
 
       .playlist-card {
         display: flex;
-        background-color: #444;
+        background-color: #333;
         background-size: contain;
         background-repeat: no-repeat;
-        background-blend-mode: darken;
+        background-blend-mode: overlay;
         color: white;
         font-weight: bold;
         word-break: break-word;
@@ -63,7 +64,7 @@
 
         &:hover {
           cursor: pointer;
-          background-blend-mode: lighten;
+          background-blend-mode: normal;
           text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
       }

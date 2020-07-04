@@ -48,7 +48,7 @@ export class Exporter extends React.Component<{}, ExporterState> {
           const link = document.getElementById('a')! as any;
           link.href = URL.createObjectURL(file);
           link.download = `${playlistName}.txt`;
-          link.innerText = playlistName;
+          link.innerText = `Download: ${playlistName}`;
         }
       })
       .catch(error => console.log(error))
@@ -102,7 +102,9 @@ export class Exporter extends React.Component<{}, ExporterState> {
       <h1>Export playlists</h1>
     </header>
     <section className="exporter-bar">
-      <p>Currently exporting: {this.state.currentlyExporting ? this.state.currentlyExporting : <a id="a">Nothing</a>}</p>
+      {this.state.progress !== this.state.total ? 
+        <p>Exporting: {this.state.currentlyExporting}</p> :
+        <a id="a">Go export something</a>}
       <div className="bar-border">
         <div className="bar" style={{width: `${this.calculateBarWidth()}%`}}>
           {this.state.progress} of {this.state.total}
