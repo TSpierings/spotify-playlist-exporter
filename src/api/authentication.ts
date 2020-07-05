@@ -5,7 +5,7 @@ export const AuthenticationDetails = {
   uri: 'https://accounts.spotify.com/authorize',
   clientId: '77d8475d33b74e52880600e79e98691d',
   responseType: 'token',
-  redirectUri: 'http://localhost:3000/authenticate',
+  redirectUri: 'https://spotify-playlist-export.web.app/authenticate',
   scopes: 'playlist-read-private playlist-read-collaborative'
 }
 
