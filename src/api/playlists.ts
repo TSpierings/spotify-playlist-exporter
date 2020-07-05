@@ -60,7 +60,7 @@ export function fetchPlaylistItems(playlistId: string, offset: number = 0): Prom
     return Promise.reject('Access token not found')
   }
 
-  const fields = 'items(track.name, track.album.name, track.artists.name),offset,next,total';  
+  const fields = 'items(track(name,album.name,artists.name)),offset,next,total';  
   const apiUri = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
   const request = new Request(`${apiUri}?limit=100&offset=${offset}&fields=${fields}`);
   request.headers.set('Authorization', 'Bearer ' + accessToken);

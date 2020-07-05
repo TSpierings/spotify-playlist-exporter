@@ -10,64 +10,17 @@
     }
   }
 
-  .exporter-bar {
-    padding: 0 20px;
-
-    p, a {
-      margin: 0;
-      padding: 0;
-    }
-
-    .bar-border {
-      width: 100%;
-      height: 20px;
-      border: 1px solid black;
-      margin-top: 5px;
-
-      .bar {
-        background-color: black;
-        height: 100%;
-        transition: width 500ms;
-        color: white;
-        font-size: 90%;
-        text-indent: 4px;
-      }
-    }
-  }
-
   .playlists {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-auto-rows: 150px;
     gap: 10px;
-    margin-top: 10px;
     padding: 10px;
-    border-top: 1px solid black;
 
     .playlist-card-container {
       display: flex;
       justify-content: center;
       align-items: center;
-
-      .playlist-card {
-        display: flex;
-        background-color: #333;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-blend-mode: overlay;
-        color: white;
-        font-weight: bold;
-        word-break: break-word;
-        height: 130px;
-        width: 130px;
-        padding: 10px;
-
-        &:hover {
-          cursor: pointer;
-          background-blend-mode: normal;
-          text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-        }
-      }
     }
   }
 }

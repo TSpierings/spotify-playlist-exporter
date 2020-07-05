@@ -1,0 +1,41 @@
+.playlist-card {
+  display: flex;
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+  word-break: break-word;
+  height: 130px;
+  width: 130px;
+  padding: 10px;
+}
+
+.initial {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+
+  &:hover {
+    cursor: pointer;
+    background-blend-mode: normal;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+}
+
+.exporting {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.done {
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+
+  .links {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}

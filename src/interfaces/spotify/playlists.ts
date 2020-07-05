@@ -3,5 +3,8 @@ export interface SimplifiedPlaylist {
   description: string;
   images: Array<any>;
   name: string;
-  tracks: Array<any>;
+  tracks: {
+    href: string;
+    total: number;
+  };
 }
