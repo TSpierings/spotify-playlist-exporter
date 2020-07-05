@@ -6,28 +6,28 @@ import {
 import { isNullOrUndefined } from 'util';
 import './App.scss';
 import { Authenticate } from './components/authenticate/authenticate';
-import { Home } from './components/home/home';
 import { Exporter } from './components/exporter/exporter';
+import { Home } from './components/home/home';
 
 function App() {
   return (
     <Router>
-        <Switch>
-          <Route exact path="/">
-            {isAuthenticated() ? <Redirect to="/exporter" /> : <Home />}
-          </Route>
+      <Switch>
+        <Route exact path="/">
+          {isAuthenticated() ? <Redirect to="/exporter" /> : <Home />}
+        </Route>
 
-          <Authenticate path="/authenticate"></Authenticate>
+        <Authenticate path="/authenticate"></Authenticate>
 
-          <PrivateRoute exact path="/exporter">
-            <Exporter />
-          </PrivateRoute>
+        <PrivateRoute exact path="/exporter">
+          <Exporter />
+        </PrivateRoute>
 
-          <Route path="*">
-            <Redirect to="/"/>
-          </Route>
-        </Switch>
-      </Router>
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
@@ -39,13 +39,13 @@ function PrivateRoute({ children, ...rest }: any) {
         isAuthenticated() ? (
           children
         ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: location }
-            }}
-          />
-        )
+            <Redirect
+              to={{
+                pathname: "/",
+                state: { from: location }
+              }}
+            />
+          )
       }
     />
   );

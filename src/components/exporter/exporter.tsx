@@ -31,6 +31,9 @@ export class Exporter extends React.Component<{}, {}> {
             <PlaylistCard playlist={playlist} />
           </div>)}
       </section>
+      <footer>
+        <a href="https://github.com/TSpierings/spotify-playlist-exporter">Github</a> | <a href="/" onClick={() => localStorage.clear()}>Logout</a>
+      </footer>
     </div>;
   }
 }
